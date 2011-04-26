@@ -39,7 +39,8 @@ $(function() {
 
 		$clone.css( cssProps ).attr({
 			"src": "assets/snowdriving.ogv", 
-			"id": cloneId
+			"id": cloneId, 
+			"controls": true
 		});
 
 		$clone.appendTo("body");
