@@ -3,7 +3,7 @@
 
 Zoom and Rotate Popcorn video objects, like this...
 
-	var $pop = Popcorn( "#video-id");
+	var $pop = Popcorn( "#video-id" );
 
 	//	zoom to 1.5 the original size
 	$pop.zoom( 1.5 );
