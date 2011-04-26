@@ -13,3 +13,5 @@ Zoom and Rotate Popcorn video objects, like this...
 
 
 
+Fun with zomming and rotating: (screen cap from the functional tests)
+<img src="http://gyazo.com/2201cb7e645cda97584f73346faff43c.png">
