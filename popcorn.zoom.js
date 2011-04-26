@@ -17,9 +17,9 @@
 	doc.head.appendChild( video );
 	
 	var specProp = "Transform", 
-			prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
-			supports = specProp.toLowerCase(), 
-			prop, idx, len;
+		prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
+		supports = specProp.toLowerCase(), 
+		prop, idx, len;
 
 	for( idx = 0, len = prefixes.length; idx < len; idx++ ) {
 
@@ -110,11 +110,7 @@
 		media.style[ supports ] = "scale(" + transform.scale + ") rotate(" + transform.rotate + "deg)";
 
 		resets.forEach(function( val ) {
-			if ( wrap ) {
-				media.style[ val ] = "0px";
-			} else {
-				media.style[ val ] = position[ val ] + "px";
-			}
+			media.style[ val ] = ( wrap ? "0" : position[ val ] ) + "px";
 		});
 
 		return pop;
