@@ -64,7 +64,7 @@
 
 		//	TODO: wrapper creation should be optional
 		var parent = media.parentNode, 
-				wrapNode, wrapDims;
+			wrapNode, wrapDims;
 		
 		if ( wrap && !parent.getAttribute("data-popcorn-zoom-frame") ) {
 
