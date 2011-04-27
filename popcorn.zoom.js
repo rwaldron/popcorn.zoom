@@ -116,9 +116,24 @@
 		return pop;
 	};
 
+
+	Popcorn.forEach( [ "zoom", "rotate" ], function() {
+		
+	});
+
+
 	Popcorn.p.zoom = function( scale, rotate, wrap ) {
 		//	Abort the mission
 		if ( scale !== 0 && !scale ) {
+			return this;
+		}
+		Popcorn.zoom( this, scale, rotate, wrap );
+		return this;
+	};
+
+	Popcorn.p.rotate = function( rotate, scale, wrap ) {
+		//	Abort the mission
+		if ( rotate !== 0 && !rotate ) {
 			return this;
 		}
 		Popcorn.zoom( this, scale, rotate, wrap );

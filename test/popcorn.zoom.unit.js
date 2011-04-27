@@ -1,60 +1,4 @@
 
-var useOgv = document.createElement("video").canPlayType("video/ogg") === "maybe" && 
-                  !document.createElement("video").canPlayType("video/mp4"), 
-
-    useType = useOgv && ".ogv" || "_512kb.mp4", 
-    
-    localMediaList = [
-      { 
-        src: "assets/snowdriving.ogv", 
-        in: 10,
-        out: 13
-      }, 
-      {
-        src: "assets/eich.ogv",
-        in: 8, 
-        out: 11
-      }
-    ],  
-    remoteMediaList = [
-      {
-        src: "http://ia600208.us.archive.org/5/items/Brunette_2/Brunette_2" + useType,  
-        in: 3,
-        out: 6
-      },
-      {
-        src: "http://ia600208.us.archive.org/0/items/Blonde_2/Blonde_2" + useType,  
-        in: 6,
-        out: 9
-      }
-    ], 
-    mixedSourceList = [
-      {
-        src: "http://ia600102.us.archive.org/23/items/HotNumber/HotNumber" + useType,  
-        in: 0, 
-        out: 2
-      },
-      {
-        src: "http://ia600102.us.archive.org/23/items/HotNumber/HotNumber" + useType,  
-        in: 5, 
-        out: 7
-      },
-      {
-        src: "http://ia600208.us.archive.org/5/items/Brunette_2/Brunette_2" + useType,  
-        in: 8,
-        out: 10
-      }, 
-      {
-        src: "assets/snowdriving.ogv",
-        in: 11,
-        out: 13
-      }, 
-      {
-        src: "http://ia600208.us.archive.org/0/items/Blonde_2/Blonde_2" + useType, 
-        in: 14,
-        out: 16
-      }
-    ];
 
 var doc = document, 
 	video = doc.createElement("video");
@@ -107,7 +51,7 @@ module("Functional")
 test(".zoom( scale )", function() {
 
 	var $zoom = Popcorn("#video"), 
-			scalez = [ 1, 1.2, 1.5, 0.75, 2 ];
+		scalez = [ 1, 1.2, 1.5, 0.75, 2 ];
 
 	expect(scalez.length);
 	
@@ -119,11 +63,11 @@ test(".zoom( scale )", function() {
 
 	});
 });
-test(".zoom( scale, rotate )", function() {
+test(".zoom( scale, degrees )", function() {
 
 	var $zoom = Popcorn("#video"), 
-			scalez = [ 1, 1.2, 1.5, 0.75, 2 ], 
-			rotatez = [ 0, 360, 90, 45, 180 ];
+		scalez = [ 1, 1.2, 1.5, 0.75, 2 ], 
+		rotatez = [ 0, 360, 90, 45, 180 ];
 
 	expect(rotatez.length);
 
@@ -135,6 +79,63 @@ test(".zoom( scale, rotate )", function() {
 		equal( $zoom.media.style[ supports ], "scale(1) rotate("+rotate+"deg)", "scale(1) and rotate("+rotate+"deg) " );
 
 	});
+
+});
+
+test(".rotate( degrees )", function() {
+
+	var $rotate = Popcorn("#video"), 
+		rotatez = [ 1, 1.2, 1.5, 0.75, 2 ];
+
+	expect(rotatez.length);
+	
+	rotatez.forEach( function( degrees ) {
+
+		$rotate.rotate( degrees );
+
+		equal( $rotate.media.style[ supports ], "scale(1) rotate("+degrees+"deg)", "scale(1) and rotate("+degrees+"deg) " );
+
+	});
+});
+test(".rotate( degrees, scale )", function() {
+
+	var $rotate = Popcorn("#video"), 
+		scalez = [ 1, 1.2, 1.5, 0.75, 2 ], 
+		rotatez = [ 0, 360, 90, 45, 180 ];
+
+	expect(scalez.length);
+
+
+	scalez.forEach( function( scale, idx ) {
+
+		$rotate.rotate( 0, scale );
+
+		equal( $rotate.media.style[ supports ], "scale("+scale+") rotate(0deg)", 
+												"scale("+scale+") and rotate(0deg) " );
+
+	});
+
+});
+
+test("zoom/rotate()", function() {
+
+	var $rotate = Popcorn("#video"), 
+		scalez = [ 1, 1.2, 1.5, 2, 1, .75 ], 
+		rotatez = [ 0, 360, 90, 180, 45, 180 ];
+
+	expect(scalez.length);
+
+	scalez.forEach( function( scale, idx ) {
+
+		$rotate.rotate( rotatez[idx], scale );
+
+		equal( $rotate.media.style[ supports ], 
+				"scale("+scale+") rotate("+rotatez[idx]+"deg)", 
+				"scale("+scale+") and rotate("+rotatez[idx]+"deg) " );
+
+	});
+	
+	$rotate.play();
 
 });
 
