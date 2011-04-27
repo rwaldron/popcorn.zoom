@@ -13,12 +13,12 @@
 	// Determine CSS3 Transform support
 	var doc = global.document,
 	video = doc.createElement("video"),
-  specProp = "Transform",
-  prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
+	specProp = "Transform",
+	prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
 	supports = specProp.toLowerCase(), 
 	prop, idx, len;
 
-  doc.head.appendChild( video );
+	doc.head.appendChild( video );
 
 	for( idx = 0, len = prefixes.length; idx < len; idx++ ) {
 
@@ -39,8 +39,7 @@
 
 		var position = pop.position(),
 		resets = [ "top", "left" ],
-
-  	transform = {
+		transform = {
 		  scale: 1, 
 			rotate: 0
 		},
