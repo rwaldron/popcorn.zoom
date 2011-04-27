@@ -27,13 +27,13 @@ doc.head.removeChild( video );
 
 
 module("API");
-test("Popcorn.zoom", function() {
+test("Popcorn.transform", function() {
   
   expect(2);
   
-  ok( Popcorn.zoom, "Popcorn.zoom exists" );
+  ok( Popcorn.transform, "Popcorn.transform exists" );
   
-  equal( typeof Popcorn.zoom, "function", "Popcorn.zoom() is a function" );
+  equal( typeof Popcorn.transform, "function", "Popcorn.transform() is a function" );
   
 });
 

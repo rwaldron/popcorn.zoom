@@ -1,5 +1,5 @@
 /*!
- * Popcorn.zoom
+ * Popcorn.transform; zoom(), rotate()
  *
  * Copyright 2011, Rick Waldron
  * Licensed under MIT license.
@@ -20,7 +20,7 @@
 
 	doc.head.appendChild( video );
 
-	for( idx = 0, len = prefixes.length; idx < len; idx++ ) {
+	for ( idx = 0, len = prefixes.length; idx < len; idx++ ) {
 
 		prop = prefixes[ idx ] + specProp;
 
@@ -32,8 +32,8 @@
 	// Garbage collect support test video
 	doc.head.removeChild( video );
 
-	// Declare and define static Popcorn.zoom method
-	Popcorn.zoom = function( pop, scale, rotate, wrap ) {
+	// Declare and define static Popcorn.transform method
+	Popcorn.transform = function( pop, scale, rotate, wrap ) {
 
 		media = pop.media;
 
@@ -115,7 +115,7 @@
 	//	TODO: DRY zoom/rotate method definitions
 	
 	Popcorn.p.zoom = function( scale, rotate, wrap ) {
-		Popcorn.zoom( this, scale, rotate, wrap );
+		Popcorn.transform( this, scale, rotate, wrap );
 		return this;
 	};
 
@@ -125,7 +125,7 @@
 			scale = rotate;
 			rotate = null;
 		}
-		Popcorn.zoom( this, scale, rotate, wrap );
+		Popcorn.transform( this, scale, rotate, wrap );
 		return this;
 	};
 
