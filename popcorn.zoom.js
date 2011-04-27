@@ -116,12 +116,8 @@
 		return pop;
 	};
 
-
-	Popcorn.forEach( [ "zoom", "rotate" ], function() {
-		
-	});
-
-
+	//	TODO: DRY zoom/rotate method definitions
+	
 	Popcorn.p.zoom = function( scale, rotate, wrap ) {
 		//	Abort the mission
 		if ( scale !== 0 && !scale ) {
