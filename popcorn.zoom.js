@@ -11,15 +11,14 @@
 (function( global, Popcorn ) {
 
 	// Determine CSS3 Transform support
-	var doc = global.document, 
-		video = doc.createElement("video");
+	var doc = global.document,
+	video = doc.createElement("video"),
+  specProp = "Transform",
+  prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
+	supports = specProp.toLowerCase(), 
+	prop, idx, len;
 
-	doc.head.appendChild( video );
-	
-	var specProp = "Transform", 
-		prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
-		supports = specProp.toLowerCase(), 
-		prop, idx, len;
+  doc.head.appendChild( video );
 
 	for( idx = 0, len = prefixes.length; idx < len; idx++ ) {
 
@@ -38,16 +37,14 @@
 
 		media = pop.media;
 
-		var position = pop.position(), 
-			resets = [ "top", "left" ],
+		var position = pop.position(),
+		resets = [ "top", "left" ],
 
-			transform = {
-				scale: 1, 
-				rotate: 0
-			},
-			transition = {
-
-			};
+  	transform = {
+		  scale: 1, 
+			rotate: 0
+		},
+		transition = {};
 
 		//	If options object
 		if ( typeof scale === "object" ) {
@@ -119,18 +116,15 @@
 	//	TODO: DRY zoom/rotate method definitions
 	
 	Popcorn.p.zoom = function( scale, rotate, wrap ) {
-		//	Abort the mission
-		if ( scale !== 0 && !scale ) {
-			return this;
-		}
 		Popcorn.zoom( this, scale, rotate, wrap );
 		return this;
 	};
 
 	Popcorn.p.rotate = function( rotate, scale, wrap ) {
-		//	Abort the mission
-		if ( rotate !== 0 && !rotate ) {
-			return this;
+		//	Fix arguments to accomodate options object syntax
+		if ( typeof rotate === "object" && !rotate.length ) {
+			scale = rotate;
+			rotate = null;
 		}
 		Popcorn.zoom( this, scale, rotate, wrap );
 		return this;
