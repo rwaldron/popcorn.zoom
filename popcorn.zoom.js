@@ -8,11 +8,11 @@
 
 
 //	Requires Popcorn.js
-(function( global, document, undefined ){ 
+(function( global, Popcorn, undefined ){ 
 
 	var 
 	// Localize global references
-	doc = document,
+	doc = document = global.document,
 	hasOwn = Object.prototype.hasOwnProperty,
 
 	// Setup for CSS3 Transform support
