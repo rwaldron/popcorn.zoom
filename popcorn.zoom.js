@@ -1,5 +1,5 @@
 /*!
- * Popcorn.prototype.transform()
+ * Popcorn.transform()
  * Popcorn.prototype.zoom()
  * Popcorn.prototype.rotate()
  *
