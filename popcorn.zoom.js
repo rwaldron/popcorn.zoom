@@ -49,11 +49,12 @@
 		  scale: 1,
 			rotate: 0
 		},
-		transition = {};
+		transition = {},
+		obj;
 
 		//	If options object
 		if ( typeof scale === "object" ) {
-			var obj = scale;
+			obj = scale;
 
 			scale = obj.scale || 1;
 			rotate = obj.rotate || 0;
