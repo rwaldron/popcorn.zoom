@@ -25,6 +25,20 @@ for( var i = 0, len = prefixes.length; i < len; i++ ) {
 doc.head.removeChild( video );
 
 
+module("floating");
+test("float32", function() {
+
+	var	buffer = new ArrayBuffer( 1024 ),  
+			arr1 = new Float32Array( buffer ), 
+			arr2 = new Float32Array( buffer );
+
+
+	console.log( buffer, arr1, arr2 );			
+	
+
+
+});
+
 
 module("API");
 test("Popcorn.transform", function() {

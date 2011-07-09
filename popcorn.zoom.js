@@ -4,16 +4,20 @@
  * Popcorn.prototype.rotate()
  *
  * Copyright 2011, Rick Waldron
- * Licensed under MIT license.
+ * MIT License
  *
  */
 
 
 //	Requires Popcorn.js
-(function( global, Popcorn ) {
+(function( global, Popcorn, undefined ){
 
-	// Determine CSS3 Transform support
-	var doc = global.document,
+	var
+	// Localize global references
+	doc = document = global.document,
+	hasOwn = Object.prototype.hasOwnProperty,
+
+	// Setup for CSS3 Transform support
 	video = doc.createElement("video"),
 	specProp = "Transform",
 	prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
@@ -62,18 +66,21 @@
 
 		//	TODO: wrapper creation should be optional
 		var parent = media.parentNode,
+			hasFrame = parent.getAttribute("data-popcorn-zoom-frame"),
 			wrapNode, wrapDims;
 
-		if ( wrap && !parent.getAttribute("data-popcorn-zoom-frame") ) {
+		if ( wrap && !hasFrame ) {
 
-			wrapNode = doc.createElement("div"),
+			wrapNode = doc.createElement("div");
 			wrapDims = { "Width": true, "Height": true };
 
 			wrapNode.setAttribute("data-popcorn-zoom-frame", "true");
 
 			pop.listen( "canplaythrough", function() {
 				for ( var prop in wrapDims ) {
-					wrapNode.style[ prop.toLowerCase() ] = media[ "video" + prop ] + "px";
+					if ( hasOwn.call( wrapDims, prop ) ) {
+						wrapNode.style[ prop.toLowerCase() ] = media[ "video" + prop ] + "px";
+					}
 				}
 			});
 
@@ -99,7 +106,7 @@
 		}
 
 		//	Remove wrapper if function was called without wrap=true
-		if ( !wrap && parent.getAttribute("data-popcorn-zoom-frame") ) {
+		if ( !wrap && hasFrame ) {
 			parent.parentNode.appendChild( media );
 			parent.parentNode.removeChild( parent );
 		}
