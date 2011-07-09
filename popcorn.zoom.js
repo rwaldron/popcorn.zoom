@@ -1,5 +1,7 @@
 /*!
- * Popcorn.transform; zoom(), rotate()
+ * Popcorn.prototype.transform()
+ * Popcorn.prototype.zoom()
+ * Popcorn.prototype.rotate()
  *
  * Copyright 2011, Rick Waldron
  * Licensed under MIT license.
@@ -15,7 +17,7 @@
 	video = doc.createElement("video"),
 	specProp = "Transform",
 	prefixes = [ "Webkit", "Moz", "ms", "O", "" ],
-	supports = specProp.toLowerCase(), 
+	supports = specProp.toLowerCase(),
 	prop, idx, len;
 
 	doc.head.appendChild( video );
@@ -40,7 +42,7 @@
 		var position = pop.position(),
 		resets = [ "top", "left" ],
 		transform = {
-		  scale: 1, 
+		  scale: 1,
 			rotate: 0
 		},
 		transition = {};
@@ -53,18 +55,18 @@
 			rotate = obj.rotate || 0;
 			wrap = obj.wrap;
 		}
-		
+
 		//	Arg list support
 		transform.scale = scale || 1;
 		transform.rotate = rotate || 0;
 
 		//	TODO: wrapper creation should be optional
-		var parent = media.parentNode, 
+		var parent = media.parentNode,
 			wrapNode, wrapDims;
-		
+
 		if ( wrap && !parent.getAttribute("data-popcorn-zoom-frame") ) {
 
-			wrapNode = doc.createElement("div"), 
+			wrapNode = doc.createElement("div"),
 			wrapDims = { "Width": true, "Height": true };
 
 			wrapNode.setAttribute("data-popcorn-zoom-frame", "true");
@@ -90,8 +92,8 @@
 
 			// Extend media style declaration properties
 			Popcorn.extend( media.style, {
-				position: "absolute", 
-				left: 0, 
+				position: "absolute",
+				left: 0,
 				top: 0
 			});
 		}
@@ -113,7 +115,7 @@
 	};
 
 	//	TODO: DRY zoom/rotate method definitions
-	
+
 	Popcorn.p.zoom = function( scale, rotate, wrap ) {
 		Popcorn.transform( this, scale, rotate, wrap );
 		return this;
